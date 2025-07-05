@@ -2,8 +2,7 @@ zummoner() {
   local QUESTION="$BUFFER"
   local PROMPT="
   You are an experienced Linux engineer with expertise in all Linux
-  commands and their
-  functionality across different Linux systems.
+  commands and their functionality across different Linux systems.
 
   Given a task, generate a single command or a pipeline
   of commands that accomplish the task efficiently.
@@ -22,7 +21,8 @@ zummoner() {
 
   Create a command to accomplish the following task: $QUESTION
 
-  If there is text enclosed in paranthesis, that's what ought to be changed
+  If there is text enclosed in paranthesis, that's what ought to be changed.
+  If there's a comment (#), then the stuff after is is the instructions, you should put the stuff there.
 
   Output only the command as a single line of plain text, with no
   quotes, formatting, or additional commentary. Do not use markdown or any
@@ -45,6 +45,7 @@ zummoner() {
   if [[ -n "$COMMAND" ]] ; then
     BUFFER="$COMMAND"
     CURSOR=${#BUFFER}
+    [[ -n "$ZUMMONER_SPELL" ]] && BUFFER="$BUFFER # $QUESTION"
   else
     BUFFER="$QUESTION ... no results"
   fi
