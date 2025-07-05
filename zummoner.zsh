@@ -43,15 +43,26 @@ zummoner() {
   local COMMAND=$(echo "$response" | sed 's/```//g' | tr -d '\n')
   #echo "$(date %s) {$QUESTION | $response}" >> /tmp/zummoner
   if [[ -n "$COMMAND" ]] ; then
-    BUFFER="$COMMAND"
+    if [[ -n "$ZUMMONER_SPELL" ]]; then 
+        [[ "$QUESTION" = *"#"* ]] && QUESTION="${QUESTION#*\# }"
+        BUFFER="${COMMAND%%\#*} # $QUESTION"
+    else
+        BUFFER="$COMMAND"
+    fi
     CURSOR=${#BUFFER}
-    [[ -n "$ZUMMONER_SPELL" ]] && BUFFER="$BUFFER # $QUESTION"
   else
     BUFFER="$QUESTION ... no results"
   fi
 }
 
+NN=0
 zle -N zummoner
+
+# This is the comment appending option, it will only work if
+# this shell feature is on
+if [[ -n "$ZUMMONER_SPELL" ]]; then
+    setopt interactive_comments
+fi
 
 if ! bindkey | grep -q "\^Xx"; then
   bindkey '^Xx' zummoner
