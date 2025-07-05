@@ -44,7 +44,7 @@ ZUMMONER_SPELL=1
 ```
 And you will get commented spell casts that you can incrementally modify like below!
 
-[zummoner.webm](https://github.com/user-attachments/assets/20766564-23ad-4747-85fa-3d64bbc9f64f)
+![zummoner](https://github.com/user-attachments/assets/f639fa9c-a28c-41a1-9d1a-f6ff7faab15e)
 
 ## Caveats - A Little Magic Caution ⚠️
 
