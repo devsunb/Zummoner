@@ -36,6 +36,16 @@ You cann zplug, zinit, zgen it ... it's the right format orrrr manually:
 3. Zummoner will show the command!
 4. Press Enter to execute. 💥
 
+## Incremental Spellcasting
+
+Set the variable before inclusion!
+```bash
+ZUMMONER_SPELL=1
+```
+And you will get commented spell casts that you can incrementally modify like below!
+
+[zummoner.webm](https://github.com/user-attachments/assets/20766564-23ad-4747-85fa-3d64bbc9f64f)
+
 ## Caveats - A Little Magic Caution ⚠️
 
 * **LLM Required:** Zummoner needs access to [simon w's llm](https://github.com/simonw/llm).
