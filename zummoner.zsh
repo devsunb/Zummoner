@@ -67,5 +67,7 @@ fi
 if ! bindkey | grep -q "\^Xx"; then
   bindkey '^Xx' zummoner
 else
-  echo "I'm not going to unbind ^Xx, you'll need to do this yourself"
+  if ! bindkey | grep -q zummoner; then
+    echo "I'm not going to unbind ^Xx, you'll need to do this yourself"
+  fi
 fi
