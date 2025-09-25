@@ -36,8 +36,25 @@ You cann zplug, zinit, zgen it ... it's the right format orrrr manually:
 3. Zummoner will show the command!
 4. Press Enter to execute. 💥
 
-## Incremental Spellcasting
+## Configuration Options ⚙️
 
+### AI Provider Selection
+Choose your AI provider by setting the environment variable:
+
+```bash
+# Use LLM (simon w's llm tool) - default
+export ZUMMONER_PROVIDER=llm
+
+# Use Claude Code CLI
+export ZUMMONER_PROVIDER=~/.claude/local/claude
+export ZUMMONER_PROVIDER_OPTIONS=-p
+
+# Use Gemini CLI
+export ZUMMONER_PROVIDER=gemini
+export ZUMMONER_PROVIDER_OPTIONS=-p
+```
+
+### Incremental Spellcasting
 Set the variable before inclusion!
 ```bash
 ZUMMONER_SPELL=1
@@ -48,7 +65,7 @@ And you will get commented spell casts that you can incrementally modify like be
 
 ## Caveats - A Little Magic Caution ⚠️
 
-* **LLM Required:** Zummoner needs access to [simon w's llm](https://github.com/simonw/llm).
+* **LLM Required:** Zummoner needs access to [simon w's llm](https://github.com/simonw/llm) or other llm cli.
 * **Network Connection:**  Requires internet access to reach the LLM.
 * **Review Commands:** Always check the generated command, *especially* if it uses `sudo`!
 * **System Differences:** Commands may need tweaking depending on your Linux distribution. 
