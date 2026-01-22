@@ -13,12 +13,11 @@ Tired of remembering complex commands? 🧙‍♂️ Zummoner is a Zsh plugin th
 * **Command Conjuration:** Describe your task in plain English, and Zummoner generates the command. ✨
 * **System Aware:** Knows your system (`uname -a`) and user for tailored spells. 🤖
 * **Modern Magic:** Prefers modern tools like `homectl`, `ip`, `systemctl`, and `journalctl`. 🚀
-* **Safety First:** Commands are vetted for reliability (but *always* review before running!). 🛡️
-* **Customizable LLM:** Pick your favorite LLM model! 🧠
+* **Customizable LLM:** Pick your favorite LLM model, even local. 🧠
 * **Seamless Integration:** Works directly within your Zsh shell. 🐚
 
 ## Installation - Binding the Spirit 🔗
-You cann zplug, zinit, zgen it ... it's the right format orrrr manually:
+You can zplug, zinit, zgen it ... it's the right format orrrr manually:
 
    ```bash
    git clone https://github.com/day50-dev/zummoner.git $HOME/.local/zummoner
