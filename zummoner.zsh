@@ -30,11 +30,11 @@ zummoner() {
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
   if which llcat >& /dev/null; then
-    _ll="llcat -k $LLC_KEY -u $LLC_SERVER"
-    [[ -n "LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
+    alias _ll="llcat -k $LLC_KEY -u $LLC_SERVER"
+    [[ -n "$LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
     model="$LLC_MODEL"
   else
-    _ll="llm"
+    alias _ll="llm"
 
     if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
       model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
