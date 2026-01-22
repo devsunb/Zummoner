@@ -50,11 +50,10 @@ And you will get commented spell casts that you can incrementally modify like be
 Zummoner can use either [Simon w's llm](https://github.com/simonw/llm) or DAY50's [llcat](https://github.com/day50-dev/llcat).
 
 For `llcat` set the: 
-
-    * model with `LLC_MODEL`
-    * server with `LLC_SERVER`
-    * key with `LLC_KEY`
-    * mcpfile (if you want) with `LLC_MCP`
+  * model with `LLC_MODEL`
+  * server with `LLC_SERVER`
+  * key with `LLC_KEY`
+  * mcpfile (if you want) with `LLC_MCP`
 
 
 ## The future!
