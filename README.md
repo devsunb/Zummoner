@@ -48,10 +48,15 @@ And you will get commented spell casts that you can incrementally modify like be
 
 ## Caveats - A Little Magic Caution ⚠️
 
-* **LLM Required:** Zummoner needs access to [simon w's llm](https://github.com/simonw/llm).
-* **Network Connection:**  Requires internet access to reach the LLM.
-* **Review Commands:** Always check the generated command, *especially* if it uses `sudo`!
-* **System Differences:** Commands may need tweaking depending on your Linux distribution. 
+Zummoner can use either [Simon w's llm](https://github.com/simonw/llm) or DAY50's [llcat](https://github.com/day50-dev/llcat).
+
+For `llcat` set the: 
+
+    * model with `LLC_MODEL`
+    * server with `LLC_SERVER`
+    * key with `LLC_KEY`
+    * mcpfile (if you want) with `LLC_MCP`
+
 
 ## The future!
 

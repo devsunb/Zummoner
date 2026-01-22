@@ -29,25 +29,31 @@ zummoner() {
   other formatting. Do not include the command into a code block.
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
-  local model=''
-
-  if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
-    model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
+  if which llcat >& /dev/null; then
+    _ll="llcat -k $LLC_KEY -u $LLC_SERVER"
+    [[ -n "LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
+    model="$LLC_MODEL"
   else
-    model=$(llm models default)
+    _ll="llm"
+
+    if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
+      model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
+    else
+      model=$(llm models default)
+    fi
   fi
 
   BUFFER="$QUESTION ... $model"
   zle -R
-  local response=$(llm "$PROMPT")
+  local response=$(_ll -m $model "$PROMPT")
   local COMMAND=$(echo "$response" | sed 's/```//g' | tr -d '\n')
   #echo "$(date %s) {$QUESTION | $response}" >> /tmp/zummoner
   if [[ -n "$COMMAND" ]] ; then
     if [[ -n "$ZUMMONER_SPELL" ]]; then 
-        [[ "$QUESTION" = *"#"* ]] && QUESTION="${QUESTION#*\# }"
-        BUFFER="${COMMAND%%\#*} # $QUESTION"
+      [[ "$QUESTION" = *"#"* ]] && QUESTION="${QUESTION#*\# }"
+      BUFFER="${COMMAND%%\#*} # $QUESTION"
     else
-        BUFFER="$COMMAND"
+      BUFFER="$COMMAND"
     fi
     CURSOR=${#BUFFER}
   else
