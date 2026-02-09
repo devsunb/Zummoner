@@ -57,6 +57,9 @@ For `llcat` set the:
     * mcpfile (if you want) with `LLC_MCP`
 
 
+There's also bummoner.sh in here which is the bash version of zummoner.
+
 ## The future!
 
 This project was a prototype [for something much more ambitious](https://news.ycombinator.com/item?id=44112949) of what is now called [ono](https://onolang.com/).
+
