@@ -29,23 +29,45 @@ zummoner() {
   other formatting. Do not include the command into a code block.
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
-  if which llcat >& /dev/null; then
-    alias _ll="llcat -k $LLC_KEY -u $LLC_SERVER"
-    [[ -n "$LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
-    model="$LLC_MODEL"
-  else
-    alias _ll="llm"
+  local -a _llcmd
+  local _backend="${ZUMMONER_BACKEND:-auto}"
 
-    if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
-      model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
+  if [[ "$_backend" == "auto" ]]; then
+    if which llcat >& /dev/null; then
+      _backend=llcat
+    elif which llm >& /dev/null; then
+      _backend=llm
+    elif which claude >& /dev/null; then
+      _backend=claude
     else
-      model=$(llm models default)
+      _backend=llm
     fi
   fi
 
+  case "$_backend" in
+    llcat)
+      _llcmd=(llcat -k "$LLC_KEY" -u "$LLC_SERVER")
+      [[ -n "$LLC_MCP" ]] && _llcmd+=(-mf "$LLC_MCP")
+      _llcmd+=(-m)
+      model="$LLC_MODEL"
+      ;;
+    claude)
+      _llcmd=(claude -p --model)
+      model="${LLC_MODEL:-sonnet}"
+      ;;
+    *)
+      _llcmd=(llm -m)
+      if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
+        model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
+      else
+        model=$(llm models default)
+      fi
+      ;;
+  esac
+
   BUFFER="$QUESTION ... $model"
   zle -R
-  local response=$(_ll -m $model "$PROMPT")
+  local response=$("${_llcmd[@]}" "$model" "$PROMPT")
   local COMMAND=$(echo "$response" | sed 's/```//g' | tr -d '\n')
   #echo "$(date %s) {$QUESTION | $response}" >> /tmp/zummoner
   if [[ -n "$COMMAND" ]] ; then
