@@ -55,11 +55,11 @@ zummoner() {
       _llcmd=(llcat -k "$LLC_KEY" -u "$LLC_SERVER" -bq think)
       [[ -n "$LLC_MCP" ]] && _llcmd+=(-mf "$LLC_MCP")
       _llcmd+=(-m)
-      model="$LLC_MODEL"
+      model="$ZUMMONER_MODEL"
       ;;
     claude)
       _llcmd=(claude -p --model)
-      model="${LLC_MODEL:-sonnet}"
+      model="${ZUMMONER_MODEL:-sonnet}"
       ;;
     *)
       _llcmd=(llm -m)
