@@ -30,8 +30,12 @@ zummoner() {
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
   if which llcat >& /dev/null; then
-    alias _ll="llcat -k $LLC_KEY -u $LLC_SERVER"
-    [[ -n "$LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
+    if which llc >& /dev/null; then
+      alias _ll="llc -bq think"
+    else
+      alias _ll="llcat -k $LLC_KEY -u $LLC_SERVER -bq think"
+      [[ -n "$LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
+    fi
     model="$LLC_MODEL"
   else
     alias _ll="llm"
