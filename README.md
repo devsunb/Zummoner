@@ -22,8 +22,8 @@ Tired of remembering complex commands?
 * **Customizable LLM:** Pick your favorite LLM model, even local. 🧠
 * **Seamless Integration:** Works directly within your Zsh shell. 🐚
 
-## Installation - Binding the Spirit 🔗
-You can zplug, zinit, zgen it ... it's the right format orrrr manually:
+## Installation
+You can zplug, zinit, zgen it ... it's the right format or manually:
 
    ```bash
    git clone https://github.com/day50-dev/zummoner.git $HOME/.local/zummoner
