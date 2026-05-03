@@ -3,18 +3,20 @@
 <br/><strong>Your AI CLI helper a keystroke away</strong>
 </p>
 
-**Invoke the power of the command line with a whisper!**
+You're running a command such as `jq`, `awk`, or `ffmpeg` and forget the syntax. You don't want to navigate to another application to have a conversation with an LLM. 
 
-Tired of remembering complex commands? 
+Get an immediate answer, just a keystroke away.
 
-🧙‍♂️ Zummoner is a Zsh plugin that *summons* the right command for you, using the magic of LLMs. Just describe what you want to do, and Zummoner does the rest!
+**Zummoner**, part of the [DAY50](https://day50.dev) suite of open-source tools for AI workflows, allows you to describe the command you wish to run, in whole or in part, at the command line, in English, and then have it get swapped out with the actual command. You can edit and modify it before invoking.
+
+It can use any model and any endpoint, including local.
+
+![zummoner](https://github.com/user-attachments/assets/f639fa9c-a28c-41a1-9d1a-f6ff7faab15e)
 
 **You Use Bash?** No Problem! `Bummoner.bash` works the same as `Zummoner.zsh`. It's right here in the repo. Clone away!
 
-![440177965-01488c16-fb68-4fdb-a7ea-76e12499641d](https://github.com/user-attachments/assets/e272d159-66c9-445a-8f82-4f545a5ddae6)
 
-
-## Features - The Enchantments 🪄
+## Features
 
 * **Command Conjuration:** Describe your task in plain English, and Zummoner generates the command. ✨
 * **System Aware:** Knows your system (`uname -a`) and user for tailored spells. 🤖
@@ -22,8 +24,8 @@ Tired of remembering complex commands?
 * **Customizable LLM:** Pick your favorite LLM model, even local. 🧠
 * **Seamless Integration:** Works directly within your Zsh shell. 🐚
 
-## Installation - Binding the Spirit 🔗
-You can zplug, zinit, zgen it ... it's the right format orrrr manually:
+## Installation
+You can zplug, zinit, zgen it ... it's the right format or manually:
 
    ```bash
    git clone https://github.com/day50-dev/zummoner.git $HOME/.local/zummoner
@@ -34,7 +36,7 @@ You can zplug, zinit, zgen it ... it's the right format orrrr manually:
 
 **Keybinding:**  Zummoner uses `^Xx` (Ctrl+x, then x) by default.  It'll let you know if that key is already taken!
 
-## Usage - Uttering the Incantation 🗣️
+## Usage
 
 1. Type what you want to do (e.g., "list all files in the current directory sorted by size").
 2. Press `^Xx`.
@@ -49,9 +51,9 @@ ZUMMONER_SPELL=1
 ```
 And you will get commented spell casts that you can incrementally modify like below!
 
-![zummoner](https://github.com/user-attachments/assets/f639fa9c-a28c-41a1-9d1a-f6ff7faab15e)
 
-## Caveats - A Little Magic Caution ⚠️
+
+## Caveats 
 
 Zummoner can use either [Simon w's llm](https://github.com/simonw/llm) or DAY50's [llcat](https://github.com/day50-dev/llcat).
 
@@ -61,10 +63,4 @@ For `llcat` set the:
   * key with `LLC_KEY`
   * mcpfile (if you want) with `LLC_MCP`
 
-
-There's also bummoner.sh in here which is the bash version of zummoner.
-
-## The future!
-
-This project was a prototype [for something much more ambitious](https://news.ycombinator.com/item?id=44112949) of what is now called [ono](https://onolang.com/).
 
