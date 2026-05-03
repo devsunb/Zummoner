@@ -30,15 +30,12 @@ zummoner() {
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
   if which llcat >& /dev/null; then
-    if which llc >& /dev/null; then
-      alias _ll="llc -bq think"
-    else
-      alias _ll="llcat -k $LLC_KEY -u $LLC_SERVER -bq think"
-      [[ -n "$LLC_MCP" ]] && _ll="$_ll -mf $LLC_MCP"
-    fi
+    _ll="llcat -u $LLC_SERVER -bq think"
+    [[ -n "$LLC_KEY_FILE" ]] && _ll+=" -k $(cat $LLC_KEY_FILE)"
+    [[ -n "$LLC_MCP" ]]      && _ll+=" -mf $LLC_MCP"
     model="$LLC_MODEL"
   else
-    alias _ll="llm"
+    _ll="llm"
 
     if [[ -r "$HOME/$config/io.datasette.llm/default_model.txt" ]]; then
       model=$(cat "$HOME/$config/io.datasette.llm/default_model.txt")
@@ -49,7 +46,7 @@ zummoner() {
 
   BUFFER="$QUESTION ... $model"
   zle -R
-  local response=$(_ll -m $model "$PROMPT")
+  local response=$($=_ll -m $model "$PROMPT")
   local COMMAND=$(echo "$response" | sed 's/```//g' | tr -d '\n')
   #echo "$(date %s) {$QUESTION | $response}" >> /tmp/zummoner
   if [[ -n "$COMMAND" ]] ; then
