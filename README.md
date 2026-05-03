@@ -63,4 +63,6 @@ For `llcat` set the:
   * key with `LLC_KEY`
   * mcpfile (if you want) with `LLC_MCP`
 
+Or you can make your life easier and take [`zsh-llm.zsh`](https://github.com/day50-dev/Incubator) from the DAY50 incubator and just source that.
+
 
