@@ -29,7 +29,9 @@ zummoner() {
   other formatting. Do not include the command into a code block.
   Don't include the shell itself (bash, zsh, etc.) in the command.
   "
-  if which llcat >& /dev/null; then
+  if [[ "$ZUMMONER_BACKEND" == claude ]]; then
+    model="${ZUMMONER_MODEL:-opus}"
+  elif which llcat >& /dev/null; then
     _ll="llcat -u $LLC_SERVER -bq think"
     [[ -n "$LLC_KEY_FILE" ]] && _ll+=" -k $(cat $LLC_KEY_FILE)"
     [[ -n "$LLC_MCP" ]]      && _ll+=" -mf $LLC_MCP"
@@ -46,7 +48,12 @@ zummoner() {
 
   BUFFER="$QUESTION ... $model"
   zle -R
-  local response=$($=_ll -m $model "$PROMPT")
+  local response
+  if [[ "$ZUMMONER_BACKEND" == claude ]]; then
+    response=$(cd "${ZUMMONER_CLAUDE_DIR:-$HOME}" && claude -p --safe-mode --tools "" --system-prompt "You are a shell command generator. Reply with only the command, no explanation, no markdown." --model "$model" "$PROMPT" </dev/null)
+  else
+    response=$($=_ll -m $model "$PROMPT")
+  fi
   local COMMAND=$(echo "$response" | sed 's/```//g' | tr -d '\n')
   #echo "$(date %s) {$QUESTION | $response}" >> /tmp/zummoner
   if [[ -n "$COMMAND" ]] ; then
